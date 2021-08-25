@@ -42,8 +42,9 @@ Scout code chunk: Cleaning BQ2
 Marie code chunk
 ```{r}
 # cleaning data for BQ3
-BQ3 <- `QuebradaCuenca3-Bisley`
-# note note note
+BQ3 <- `QuebradaCuenca3-Bisley` %>% 
+  clean_names() %>% 
+  mutate(sample_date = lubridate::mdy(sample_date))
   
 
 
