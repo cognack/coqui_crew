@@ -57,7 +57,9 @@ Marie code chunk
 # cleaning data for BQ3
 BQ3 <- `QuebradaCuenca3-Bisley` %>% 
   clean_names() %>% 
-  mutate(sample_date = lubridate::mdy(sample_date))
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  mutate(year = year(sample_date)) %>% 
+  mutate(month = month(sample_date))
 
 # note
   
