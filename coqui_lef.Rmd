@@ -105,7 +105,10 @@ prm_no3 <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
 
 prm_no3
 
+prm_k<- ggplot(data = prm, aes(x = sample_date, y = k)) +
+  geom_line()
 
+prm_k
 
 
 ```
