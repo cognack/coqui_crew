@@ -43,7 +43,8 @@ Scout code chunk
 Marie code chunk
 ```{r}
 # cleaning data for BQ3
-BQ3 <- `QuebradaCuenca3-Bisley` %>% 
+BQ3 <- `QuebradaCuenca3-Bisley`
+# note note note
   
 
 
