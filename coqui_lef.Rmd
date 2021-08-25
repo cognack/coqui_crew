@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(janitor)
+library(lubridate)
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -21,28 +22,48 @@ lef_files <- list.files(here("data"), pattern = "*.csv")
 for (i in seq_along(lef_files)) {
     assign(lef_files[i] %>%
              str_remove(".csv"),
-           read_csv(here("data", lef_files[i])))
+           read_csv(here("data", lef_files[i]), na = c("-9999","-9999.0","-9999.00")))
   
 }
 
 
 ```
 
+<<<<<<< HEAD
 Julia code chunk CQ1
+=======
+Julia code chunk - cleaning BQ1
+>>>>>>> b9076730194aacc6452edf61907b2463aef056ed
 ```{r}
+QB1 <- `QuebradaCuenca1-Bisley` %>% 
+  # clean column names
+  clean_names() %>% 
+ # changed date from 'character' to 'date'
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  
+  mutate
+  
+  select("sample_data", "no3", "k")
+  
 
 ```
 
+<<<<<<< HEAD
 Scout code chunk C
+=======
+Scout code chunk: Cleaning BQ2
+>>>>>>> b9076730194aacc6452edf61907b2463aef056ed
 ```{r}
-
-
+#adding a line!
 ```
 
 
 Marie code chunk
 ```{r}
-
+# cleaning data for BQ3
+BQ3 <- `QuebradaCuenca3-Bisley`
+# note note note
+  
 
 
 
