@@ -29,7 +29,11 @@ for (i in seq_along(lef_files)) {
 
 ```
 
+<<<<<<< HEAD
+Julia code chunk CQ1
+=======
 Julia code chunk - cleaning BQ1
+>>>>>>> b9076730194aacc6452edf61907b2463aef056ed
 ```{r}
 QB1 <- `QuebradaCuenca1-Bisley` %>% 
   # clean column names
@@ -44,10 +48,15 @@ QB1 <- `QuebradaCuenca1-Bisley` %>%
 
 ```
 
+<<<<<<< HEAD
+Scout code chunk C
+=======
 Scout code chunk: Cleaning BQ2
+>>>>>>> b9076730194aacc6452edf61907b2463aef056ed
 ```{r}
 #adding a line!
 ```
+
 
 Marie code chunk
 ```{r}
@@ -60,11 +69,36 @@ BQ3 <- `QuebradaCuenca3-Bisley` %>%
   
 
 
+
 ```
 
-Steven code chunk
+Steven code chunk PRM
 ```{r}
+prm <- RioMameyesPuenteRoto %>% 
+  
+  # clean name headings
+  clean_names() %>% 
+  
+  # changed date "character" to "datetime"
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  
+  # separate out month column
+  separate(sample_date, into = c("year", "month"), sep = "/") %>% 
+  
+  # select columns three columns
+  # no3 in ug N/L
+  # K in ug N/L
+  
+  select("sample_date", "date", "year, "no3", "k")
+  
 
+prm
+
+
+prm_df <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
+  geom_line()
+
+prm_df
 
 ```
 
