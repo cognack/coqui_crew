@@ -47,7 +47,10 @@ Scout code chunk: Cleaning BQ2
 ```{r}
 #lubridate dates to date format
 #add month and year column (8/16)
-  
+qb2 <- `QuebradaCuenca2-Bisley` %>% 
+  clean_names() %>% 
+  separate(col = sample_date, into = c("sample_date", "time"), sep = " ") %>% 
+  mutate(sample_date = lubridate::mdy(sample_date))
 
 ```
 
