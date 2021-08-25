@@ -80,7 +80,11 @@ prm <- RioMameyesPuenteRoto %>%
   
   # separate out month and year
   mutate(year = year(sample_date)) %>% 
-  mutate(month = month(sample_date))
+  mutate(month = month(sample_date)) %>% 
+  
+  # group by
+  group_by(sample_date, year, month) %>% 
+  summarize(k, no3)
   
   # select columns three columns
   # no3 in ug N/L
@@ -89,14 +93,20 @@ prm <- RioMameyesPuenteRoto %>%
   # select("sample_date", "date", "year, "no3", "k")
   
 
+
+
+
 prm
 
 
 
-prm_df <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
+prm_no3 <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
   geom_line()
 
-prm_df
+prm_no3
+
+
+
 
 ```
 
