@@ -28,8 +28,18 @@ for (i in seq_along(lef_files)) {
 
 ```
 
-Julia code chunk
+Julia code chunk - cleaning BQ1
 ```{r}
+QB1 <- `QuebradaCuenca1-Bisley` %>% 
+  # clean column names
+  clean_names() %>% 
+ # changed date from 'character' to 'date'
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  
+  mutate
+  
+  select("sample_data", "no3", "k")
+  
 
 ```
 
