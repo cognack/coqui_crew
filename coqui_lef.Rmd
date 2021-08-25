@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(janitor)
+library(lubridate)
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -40,7 +41,10 @@ Scout code chunk: Cleaning BQ2
 
 Marie code chunk
 ```{r}
-
+# cleaning data for BQ3
+BQ3 <- `QuebradaCuenca3-Bisley`
+# note note note
+  
 
 
 ```
