@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(janitor)
+library(lubridate)
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -21,7 +22,7 @@ lef_files <- list.files(here("data"), pattern = "*.csv")
 for (i in seq_along(lef_files)) {
     assign(lef_files[i] %>%
              str_remove(".csv"),
-           read_csv(here("data", lef_files[i])))
+           read_csv(here("data", lef_files[i]), na = c("-9999","-9999.0","-9999.00")))
   
 }
 
@@ -43,15 +44,17 @@ QB1 <- `QuebradaCuenca1-Bisley` %>%
 
 ```
 
-Scout code chunk
+Scout code chunk: Cleaning BQ2
 ```{r}
-
-
+#adding a line!
 ```
 
 Marie code chunk
 ```{r}
-
+# cleaning data for BQ3
+BQ3 <- `QuebradaCuenca3-Bisley`
+# note note note
+  
 
 
 ```
