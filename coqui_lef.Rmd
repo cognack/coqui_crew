@@ -78,7 +78,7 @@ prm <- RioMameyesPuenteRoto %>%
   # changed date "character" to "datetime"
   mutate(sample_date = lubridate::mdy(sample_date)) %>% 
   
-  # separate out month column
+  # separate out month and year
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
   
