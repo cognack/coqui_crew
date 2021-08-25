@@ -7,23 +7,21 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
-library(skimr)
-library(tidytext)
 library(here)
-library(janitor
+library(janitor)
 ```
 
 Code below reads in and assigns multiple CSV files
 ```{r}
 # create a list of file names to read in
 
-lef_files <- list.files(here("data", "knb-lter-luq.20.4923052"), pattern = "*.csv")
+lef_files <- list.files(here("data"), pattern = "*.csv")
 
 # loop over the files, reading in, and creating a stored object with assign
 for (i in seq_along(lef_files)) {
     assign(lef_files[i] %>%
              str_remove(".csv"),
-           read_csv(here("data","knb-lter-luq.20.4923052", lef_files[i])))
+           read_csv(here("data", lef_files[i])))
   
 }
 
