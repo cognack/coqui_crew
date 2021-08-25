@@ -77,16 +77,18 @@ prm <- RioMameyesPuenteRoto %>%
   mutate(sample_date = lubridate::mdy(sample_date)) %>% 
   
   # separate out month column
-  separate(sample_date, into = c("year", "month"), sep = "/") %>% 
+  mutate(year = year(sample_date)) %>% 
+  mutate(month = month(sample_date))
   
   # select columns three columns
   # no3 in ug N/L
   # K in ug N/L
   
-  select("sample_date", "date", "year, "no3", "k")
+  # select("sample_date", "date", "year, "no3", "k")
   
 
 prm
+
 
 
 prm_df <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
