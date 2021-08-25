@@ -61,7 +61,10 @@ BQ3 <- `QuebradaCuenca3-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
 
-# note
+BQ3_plot <- ggplot(data = BQ3, aes(x = sample_date, y = no3)) +
+  geom_line()
+
+BQ3_plot
   
 
 
