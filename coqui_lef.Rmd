@@ -36,7 +36,10 @@ Julia code chunk
 
 Scout code chunk: Cleaning BQ2
 ```{r}
-#adding a line!
+#lubridate dates to date format
+#add month and year column (8/16)
+  
+
 ```
 
 Marie code chunk
