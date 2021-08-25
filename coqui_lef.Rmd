@@ -29,30 +29,21 @@ for (i in seq_along(lef_files)) {
 
 ```
 
-<<<<<<< HEAD
-Julia code chunk CQ1
-=======
+
 Julia code chunk - cleaning BQ1
->>>>>>> b9076730194aacc6452edf61907b2463aef056ed
 ```{r}
 QB1 <- `QuebradaCuenca1-Bisley` %>% 
   # clean column names
   clean_names() %>% 
  # changed date from 'character' to 'date'
-  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
-  
-  mutate
-  
-  select("sample_data", "no3", "k")
+  mutate(sample_date = lubridate::mdy(sample_date)) 
   
 
 ```
 
-<<<<<<< HEAD
-Scout code chunk C
-=======
+
+
 Scout code chunk: Cleaning BQ2
->>>>>>> b9076730194aacc6452edf61907b2463aef056ed
 ```{r}
 #lubridate dates to date format
 #add month and year column (8/16)
