@@ -68,7 +68,10 @@ qb2 <- `QuebradaCuenca2-Bisley` %>%
 #unit is micrograms per liter. (value ranges from 0 to 1500)
 
 qb2_no3 <- ggplot(data = qb2, aes(x = sample_date, y = no3)) +
-  geom_line()
+  geom_line() +
+  labs(x = "Years",
+       y = expression(paste(NO[3], " ", "-N", ug, 1^{-1}))) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype = 4, color = "red")
 
 qb2_no3
 
@@ -76,9 +79,15 @@ qb2_no3
 #unit it mg/l. (value ranges from 0 to 4) 
 
 qb2_k <- ggplot(data = qb2, aes(x = sample_date, y = k)) +
-  geom_line()
+  geom_line() +
+  labs(x = "Years",
+       y = expression(paste(NO[3], " ", "-N", ug, 1^{-1}))) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype = 4, color = "red")
 
 qb2_k
+
+qb2_k / qb2_no3
+
 ```
 
 
