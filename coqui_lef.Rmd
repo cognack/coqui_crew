@@ -180,7 +180,8 @@ Visualizing All Sites
 ```{r}
 all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
   geom_line(aes(linetype = sample_id),
-            size = 0.25) +
+            size = 0.25,
+            show.legend = FALSE) +
   geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", size = 1) +
   labs(title = "Impact of Hurricane Hugo on Stream Chemistry",
        subtitle = "Difference in Potassium and Nitrate at Stream Sites in the Luquillo Experimental Forest",
@@ -191,7 +192,8 @@ all_sites_k
 
 all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
   geom_line(aes(linetype = sample_id),
-            size = 0.25) +
+            size = 0.25,
+            show.legend = FALSE) +
   geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", size = 1) +
   labs(x = "Year",
        y = NULL,
