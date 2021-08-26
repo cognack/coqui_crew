@@ -32,11 +32,11 @@ for (i in seq_along(lef_files)) {
 
 Julia code chunk - cleaning BQ1
 ```{r}
-QB1 <- `QuebradaCuenca1-Bisley` %>% 
-  # clean column names
+qb1 <- `QuebradaCuenca1-Bisley` %>% 
   clean_names() %>% 
- # changed date from 'character' to 'date'
-  mutate(sample_date = lubridate::mdy(sample_date)) 
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  mutate(year = year(sample_date)) %>% 
+  mutate(month = month(sample_date))
   
 
 ```
