@@ -74,7 +74,7 @@ BQ3_k_plot
 
 (BQ3_k_plot / BQ3_no3_plot) & theme_classic()
 
-# note
+# note, note
 ```
 
 Steven code chunk PRM
