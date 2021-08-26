@@ -11,6 +11,7 @@ library(here)
 library(janitor)
 library(lubridate)
 library(patchwork)
+
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -117,11 +118,11 @@ prm <- RioMameyesPuenteRoto %>%
   
   # separate out month and year
   mutate(year = year(sample_date)) %>% 
-  mutate(month = month(sample_date)) %>% 
+  mutate(month = month(sample_date))
   
   # group by
-  group_by(sample_date, year, month) %>% 
-  summarize(k, no3)
+  #group_by(sample_date, year, month) %>% 
+  #summarize(k, no3)
   
   # select columns three columns
   # no3 in ug N/L
@@ -138,15 +139,21 @@ prm
 
 
 prm_no3 <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
-  geom_line()
+  geom_line() +
+  labs(x = "Years",
+       y = expression(paste(NO[3]," ", "-N ", ug, l^{-1}))) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype=4)
 
-prm_no3
 
 prm_k<- ggplot(data = prm, aes(x = sample_date, y = k)) +
-  geom_line()
+  geom_line() +
+  labs(x = NULL,
+       y = expression(paste("k mg ", l^{-1}))) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype=4)
 
-prm_k
 
+
+(prm_k / prm_no3) + theme_minimal()
 
 ```
 
