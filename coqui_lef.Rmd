@@ -68,7 +68,7 @@ BQ3_no3_plot <- ggplot(data = BQ3, aes(x = sample_date, y = no3)) +
   
 BQ3_k_plot <- ggplot(data = BQ3, aes(x = sample_date, y = k)) +
   geom_line(linetype = "dashed") +
-  geom_vline(xintercept = as.numeric(as.Date("1990-01-01")), color = "blue") +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue") +
   labs(x = "year", y = "Potassium (mg/L)")
 BQ3_k_plot
 
