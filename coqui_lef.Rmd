@@ -30,14 +30,18 @@ for (i in seq_along(lef_files)) {
 ```
 
 
-Julia code chunk - cleaning BQ1
+Julia code chunk - cleaning QB1
 ```{r}
 qb1 <- `QuebradaCuenca1-Bisley` %>% 
   clean_names() %>% 
   mutate(sample_date = lubridate::mdy(sample_date)) %>% 
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
+
+qb1_df <- ggplot(data = qb1, aes(x = sample_date, y = no3)) +
+  geom_line()
   
+qb1_df
 
 ```
 
