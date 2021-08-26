@@ -37,7 +37,8 @@ QB1 <- `QuebradaCuenca1-Bisley` %>%
   clean_names() %>% 
  # changed date from 'character' to 'date'
   mutate(sample_date = lubridate::mdy(sample_date)) 
-  
+
+"8-26-2021 github connect"
 
 ```
 
