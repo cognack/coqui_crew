@@ -59,6 +59,7 @@ qb2 <- `QuebradaCuenca2-Bisley` %>%
   mutate(month = month(sample_date))
 
 #plot no3 from qb2
+#unit is micrograms per liter. ranges from 0 to 1500
 
 qb2_no3 <- ggplot(data = qb2, aes(x = sample_date, y = no3)) +
   geom_line()
@@ -66,6 +67,7 @@ qb2_no3 <- ggplot(data = qb2, aes(x = sample_date, y = no3)) +
 qb2_no3
 
 #plot k from qb2
+#unit it mg/l. ranges from 0 to 4. 
 
 qb2_k <- ggplot(data = qb2, aes(x = sample_date, y = k)) +
   geom_line()
