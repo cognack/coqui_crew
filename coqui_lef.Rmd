@@ -169,13 +169,13 @@ prm_k<- ggplot(data = prm, aes(x = sample_date, y = k)) +
 (prm_k / prm_no3) + theme_minimal()
 
 ```
-Combining Datasets
+Combining Datasets (Marie)
 ```{r}
 all_sites <- bind_rows(prm, bq1, bq2, bq3) %>% 
   group_by(sample_id)
 ```
 
-Visualizing All Sites
+Visualizing All Sites (Scout)
 
 ```{r}
 all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
