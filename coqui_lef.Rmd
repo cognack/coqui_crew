@@ -11,6 +11,7 @@ library(here)
 library(janitor)
 library(lubridate)
 library(patchwork)
+
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -33,12 +34,16 @@ for (i in seq_along(lef_files)) {
 
 Julia code chunk - cleaning BQ1
 ```{r}
-QB1 <- `QuebradaCuenca1-Bisley` %>% 
-  # clean column names
+bq1 <- `QuebradaCuenca1-Bisley` %>% 
   clean_names() %>% 
- # changed date from 'character' to 'date'
-  mutate(sample_date = lubridate::mdy(sample_date)) 
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  mutate(year = year(sample_date)) %>% 
+  mutate(month = month(sample_date))
+
+bq1_df <- ggplot(data = bq1, aes(x = sample_date, y = no3)) +
+  geom_line()
   
+bq1_df
 
 ```
 
@@ -95,11 +100,19 @@ BQ3 <- `QuebradaCuenca3-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
 
-# note
+BQ3_no3_plot <- ggplot(data = BQ3, aes(x = sample_date, y = no3)) +
+  geom_line(linetype = "dashed") +
+  labs(x = "year", y = "Nitrate (ug/L)")
   
+BQ3_k_plot <- ggplot(data = BQ3, aes(x = sample_date, y = k)) +
+  geom_line(linetype = "dashed") +
+  geom_vline(xintercept = as.numeric(as.Date("1990-01-01")), color = "blue") +
+  labs(x = "year", y = "Potassium (mg/L)")
+BQ3_k_plot
 
+(BQ3_k_plot / BQ3_no3_plot) & theme_classic()
 
-
+# note, note
 ```
 
 Steven code chunk PRM
@@ -116,6 +129,10 @@ prm <- RioMameyesPuenteRoto %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
   
+  # group by
+  #group_by(sample_date, year, month) %>% 
+  #summarize(k, no3)
+  
   # select columns three columns
   # no3 in ug N/L
   # K in ug N/L
@@ -123,14 +140,29 @@ prm <- RioMameyesPuenteRoto %>%
   # select("sample_date", "date", "year, "no3", "k")
   
 
+
+
+
 prm
 
 
 
-prm_df <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
-  geom_line()
+prm_no3 <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
+  geom_line() +
+  labs(x = "Years",
+       y = expression(paste(NO[3]," ", "-N ", ug, l^{-1}))) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype=4)
 
-prm_df
+
+prm_k<- ggplot(data = prm, aes(x = sample_date, y = k)) +
+  geom_line() +
+  labs(x = NULL,
+       y = expression(paste("k mg ", l^{-1}))) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype=4)
+
+
+
+(prm_k / prm_no3) + theme_minimal()
 
 ```
 
