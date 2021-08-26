@@ -67,7 +67,7 @@ qb2_no3 <- ggplot(data = qb2, aes(x = sample_date, y = no3)) +
 qb2_no3
 
 #plot k from qb2
-#unit it mg/l. (value ranges from 0 to 4) 
+#unit it mg/l. (value ranges from 0 to 4) test for PAT purposes
 
 qb2_k <- ggplot(data = qb2, aes(x = sample_date, y = k)) +
   geom_line()
