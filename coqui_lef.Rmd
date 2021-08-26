@@ -32,14 +32,18 @@ for (i in seq_along(lef_files)) {
 ```
 
 
-Julia code chunk - cleaning BQ1
+Julia code chunk - cleaning QB1
 ```{r}
-QB1 <- `QuebradaCuenca1-Bisley` %>% 
-  # clean column names
+qb1 <- `QuebradaCuenca1-Bisley` %>% 
   clean_names() %>% 
- # changed date from 'character' to 'date'
-  mutate(sample_date = lubridate::mdy(sample_date)) 
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  mutate(year = year(sample_date)) %>% 
+  mutate(month = month(sample_date))
+
+qb1_df <- ggplot(data = qb1, aes(x = sample_date, y = no3)) +
+  geom_line()
   
+qb1_df
 
 ```
 
@@ -47,10 +51,34 @@ QB1 <- `QuebradaCuenca1-Bisley` %>%
 
 Scout code chunk: Cleaning BQ2
 ```{r}
-#lubridate dates to date format
-#add month and year column (8/16)
-  
+#created a new df called "qb2"
+#separated the sample date column into sample dates and sample times for ease of wrangling the dates, which are of more importance 
+#used lubridate to change `sample_date` data to mdy format
+#added a year column using sample_date
+#added a month column using sample_date
 
+qb2 <- `QuebradaCuenca2-Bisley` %>% 
+  clean_names() %>% 
+  separate(col = sample_date, into = c("sample_date", "sample_time"), sep = " ") %>% 
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  mutate(year = year(sample_date)) %>% 
+  mutate(month = month(sample_date))
+
+#plot no3 from qb2
+#unit is micrograms per liter. (value ranges from 0 to 1500)
+
+qb2_no3 <- ggplot(data = qb2, aes(x = sample_date, y = no3)) +
+  geom_line()
+
+qb2_no3
+
+#plot k from qb2
+#unit it mg/l. (value ranges from 0 to 4) 
+
+qb2_k <- ggplot(data = qb2, aes(x = sample_date, y = k)) +
+  geom_line()
+
+qb2_k
 ```
 
 
@@ -63,11 +91,19 @@ BQ3 <- `QuebradaCuenca3-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
 
-# note
+BQ3_no3_plot <- ggplot(data = BQ3, aes(x = sample_date, y = no3)) +
+  geom_line(linetype = "dashed") +
+  labs(x = "year", y = "Nitrate (ug/L)")
   
+BQ3_k_plot <- ggplot(data = BQ3, aes(x = sample_date, y = k)) +
+  geom_line(linetype = "dashed") +
+  geom_vline(xintercept = as.numeric(as.Date("1990-01-01")), color = "blue") +
+  labs(x = "year", y = "Potassium (mg/L)")
+BQ3_k_plot
 
+(BQ3_k_plot / BQ3_no3_plot) & theme_classic()
 
-
+# note, note
 ```
 
 Steven code chunk PRM
