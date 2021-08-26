@@ -10,6 +10,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(lubridate)
+library(patchwork)
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -89,11 +90,19 @@ BQ3 <- `QuebradaCuenca3-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
 
-# note
+BQ3_no3_plot <- ggplot(data = BQ3, aes(x = sample_date, y = no3)) +
+  geom_line(linetype = "dashed") +
+  labs(x = "year", y = "Nitrate (ug/L)")
   
+BQ3_k_plot <- ggplot(data = BQ3, aes(x = sample_date, y = k)) +
+  geom_line(linetype = "dashed") +
+  geom_vline(xintercept = as.numeric(as.Date("1990-01-01")), color = "blue") +
+  labs(x = "year", y = "Potassium (mg/L)")
+BQ3_k_plot
 
+(BQ3_k_plot / BQ3_no3_plot) & theme_classic()
 
-
+# note, note
 ```
 
 Steven code chunk PRM
