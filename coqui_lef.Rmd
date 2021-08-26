@@ -10,6 +10,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(lubridate)
+library(patchwork)
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -73,6 +74,9 @@ qb2_k <- ggplot(data = qb2, aes(x = sample_date, y = k)) +
   geom_line()
 
 qb2_k
+
+qb2_k / qb2_no3
+
 ```
 
 
