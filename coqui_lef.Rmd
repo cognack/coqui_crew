@@ -45,14 +45,20 @@ QB1 <- `QuebradaCuenca1-Bisley` %>%
 
 Scout code chunk: Cleaning BQ2
 ```{r}
-#lubridate dates to date format
-#add month and year column (8/16)
+#created a new df called "qb2"
+#separated the sample date column into sample dates and sample times for ease of wrangling the dates, which are of more importance 
+#used lubridate to change `sample_date` data to mdy format
+#added a year column using sample_date
+#added a month column using sample_date
+
 qb2 <- `QuebradaCuenca2-Bisley` %>% 
   clean_names() %>% 
-  separate(col = sample_date, into = c("sample_date", "time"), sep = " ") %>% 
+  separate(col = sample_date, into = c("sample_date", "sample_time"), sep = " ") %>% 
   mutate(sample_date = lubridate::mdy(sample_date)) %>% 
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
+
+
 ```
 
 
