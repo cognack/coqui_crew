@@ -118,11 +118,11 @@ prm <- RioMameyesPuenteRoto %>%
   
   # separate out month and year
   mutate(year = year(sample_date)) %>% 
-  mutate(month = month(sample_date)) %>% 
+  mutate(month = month(sample_date))
   
   # group by
-  group_by(sample_date, year, month) %>% 
-  summarize(k, no3)
+  #group_by(sample_date, year, month) %>% 
+  #summarize(k, no3)
   
   # select columns three columns
   # no3 in ug N/L
