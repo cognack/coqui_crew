@@ -142,18 +142,18 @@ prm_no3 <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
   geom_line() +
   labs(x = "Years",
        y = expression(paste(NO[3]," ", "-N ", ug, l^{-1}))) +
-  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype=4)
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", linetype=4)
 
 
 prm_k<- ggplot(data = prm, aes(x = sample_date, y = k)) +
   geom_line() +
   labs(x = NULL,
        y = expression(paste("k mg ", l^{-1}))) +
-  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype=4)
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", linetype=4)
 
 
 
-(prm_k / prm_no3) + theme_minimal()
+(prm_k / prm_no3) & theme_minimal()
 
 ```
 
