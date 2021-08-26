@@ -10,6 +10,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(lubridate)
+library(patchwork)
 ```
 
 Code below reads in and assigns multiple CSV files
@@ -61,13 +62,16 @@ BQ3 <- `QuebradaCuenca3-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
 
-BQ3_plot <- ggplot(data = BQ3, aes(x = sample_date, y = no3)) +
+BQ3_no3_plot <- ggplot(data = BQ3, aes(x = sample_date, y = k)) +
   geom_line()
 
-BQ3_plot
+BQ3_no3_plot
   
+BQ3_k_plot <- ggplot(data = BQ3, aes(x = sample_date, y = k)) +
+  geom_line()
 
-# note
+(BQ3_no3_plot / BQ3_k_plot) & theme_classic()
+
 
 ```
 
