@@ -50,8 +50,9 @@ Scout code chunk: Cleaning BQ2
 qb2 <- `QuebradaCuenca2-Bisley` %>% 
   clean_names() %>% 
   separate(col = sample_date, into = c("sample_date", "time"), sep = " ") %>% 
-  mutate(sample_date = lubridate::mdy(sample_date))
-
+  mutate(sample_date = lubridate::mdy(sample_date)) %>% 
+  mutate(year = year(sample_date)) %>% 
+  mutate(month = month(sample_date))
 ```
 
 
