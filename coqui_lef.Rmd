@@ -171,6 +171,35 @@ prm_k<- ggplot(data = prm, aes(x = sample_date, y = k)) +
 ```
 Combining Datasets
 ```{r}
-all_sites <- bind_rows(prm, bq1, bq2, bq3)
+all_sites <- bind_rows(prm, bq1, bq2, bq3) %>% 
+  group_by(sample_id)
+```
+
+Visualizing All Sites
+
+```{r}
+all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
+  geom_line(aes(linetype = sample_id),
+            size = 0.25) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", size = 1) +
+  labs(title = "Impact of Hurricane Hugo on Stream Chemistry",
+       subtitle = "Difference in Potassium and Nitrate at Stream Sites in the Luquillo Experimental Forest",
+       x = NULL,
+       y = expression(paste("k mg ", l^{-1})))
+
+all_sites_k
+
+all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
+  geom_line(aes(linetype = sample_id),
+            size = 0.25) +
+  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", size = 1) +
+  labs(x = "Year",
+       y = NULL,
+       caption = "McDowell, W. 2021. Chemistry of stream water from the Luquillo Mountains ver 4923052. Environmental Data Initiative.")
+  
+
+all_sites_no3
+
+all_sites_k / all_sites_no3
 ```
 
