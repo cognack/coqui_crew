@@ -58,7 +58,19 @@ qb2 <- `QuebradaCuenca2-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date))
 
+#plot no3 from qb2
 
+qb2_no3 <- ggplot(data = qb2, aes(x = sample_date, y = no3)) +
+  geom_line()
+
+qb2_no3
+
+#plot k from qb2
+
+qb2_k <- ggplot(data = qb2, aes(x = sample_date, y = k)) +
+  geom_line()
+
+qb2_k
 ```
 
 
