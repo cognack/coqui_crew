@@ -1,8 +1,10 @@
 ---
 title: "Coqui Crew: Analysis of Hurricane Impact on Stream Chemistry in LEF"
 output: 
-  distill::distill_article:
+  html_document: 
+    theme: flatly
     toc: true
+    toc_float: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -47,14 +49,13 @@ library(here)
 ```{r}
 # create a list of file names to read in
 
-lef_files <- list.files("/courses/EDS214/coqui_crew/data", pattern = "*.csv")
+`QuebradaCuenca1-Bisley` <- read_csv("/courses/EDS214/coqui_crew/data/QuebradaCuenca1-Bisley.csv", na = c("-9999","-9999.0","-9999.00"))
 
-# loop over the files, reading in, and creating a stored object with assign
-for (i in seq_along(lef_files)) {
-    assign(lef_files[i] %>%
-             str_remove(".csv"),
-           read_csv(here("data", lef_files[i]), na = c("-9999","-9999.0","-9999.00")))
-}
+`QuebradaCuenca2-Bisley` <- read_csv("/courses/EDS214/coqui_crew/data/QuebradaCuenca2-Bisley.csv", na = c("-9999","-9999.0","-9999.00"))
+
+`QuebradaCuenca3-Bisley` <- read_csv("/courses/EDS214/coqui_crew/data/QuebradaCuenca3-Bisley.csv", na = c("-9999","-9999.0","-9999.00"))
+
+`RioMameyesPuenteRoto` <- read_csv("/courses/EDS214/coqui_crew/data/RioMameyesPuenteRoto.csv", na = c("-9999","-9999.0","-9999.00"))
 ```
 
 
@@ -138,7 +139,7 @@ all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
   scale_x_date(position = "top") +
   theme_minimal()
 
-all_sites_k 
+#all_sites_k 
 #(used to view separate graphs before combining)
 
 all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
