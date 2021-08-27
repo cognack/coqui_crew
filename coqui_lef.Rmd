@@ -1,6 +1,8 @@
 ---
 title: "Coqui Crew: Analysis of Hurricane Impact on Stream Chemistry in LEF"
-output: html_document
+output: 
+  distill::distill_article:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +13,6 @@ library(janitor)
 library(lubridate)
 library(patchwork)
 library(here)
-
 ```
 
 ![Coqui Image](images/coqui_npr.jpg)
@@ -42,7 +43,7 @@ library(here)
 
 ![Coqui Crew Workflow Branches](images/coqui_crew_branches.png)
 
-Code below reads in and assigns multiple CSV files
+#### Code below reads in and assigns multiple CSV files
 ```{r}
 # create a list of file names to read in
 
@@ -125,9 +126,10 @@ all_sites <- bind_rows(prm, bq1, bq2, bq3) %>%
 
 ```{r}
 all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
-  geom_line(aes(linetype = sample_id),
+  geom_line(aes(color = sample_id, linetype = sample_id),
             size = 0.25,
             show.legend = FALSE) +
+  scale_color_manual(values = c("blue4", "cyan2", "goldenrod1", "firebrick1")) +
   geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", size = 1) +
   labs(title = "Impact of Hurricane Hugo on Stream Chemistry",
        subtitle = "Difference in Potassium and Nitrate at Stream Sites in the Luquillo Experimental Forest",
@@ -136,13 +138,14 @@ all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
   scale_x_date(position = "top") +
   theme_minimal()
 
-#all_sites_k 
+all_sites_k 
 #(used to view separate graphs before combining)
 
 all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
-  geom_line(aes(linetype = sample_id),
+  geom_line(aes(color = sample_id, linetype = sample_id),
             size = 0.25,
             show.legend = TRUE) +
+  scale_color_manual(values = c("blue4", "cyan2", "goldenrod1", "firebrick1")) +
   geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", size = 1) +
   labs(x = NULL,
        y = expression(paste(NO[3]," ", "-N ", ug, l^{-1})),
