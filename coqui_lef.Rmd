@@ -14,19 +14,20 @@ library(patchwork)
 
 ```
 
-# Questions 
+### Questions 
 *technical:* How did hurricane Hugo impact stream chemistry at the Luquillo Experimental Forest?
 
 *team work flow:* How can we collaborate to clean data, combine data, and produce a visualization? 
 
-# Set Up
+### Set Up
 
 - Steven made a Github repo with an R project containing our data
 - Marie, Julia, and Scout were assigned as collaborators on the repo
 - All of us worked on the project through our user accounts in the Taylor server
 - The data was stored in the Github repo and was uploaded in one person's project. 
+- Finally, we updated the way we call our data in from calling from our data folder in the project to calling from our shared storage group folder in the class folder on the Taylor Server.
   
-# Team Organization 
+### Team Organization 
 
 - First worked in assigned code chunks in the Rmd in one main branch. 
 - After a few conflicts, we tried working in separate branches. We did:
@@ -42,7 +43,7 @@ Code below reads in and assigns multiple CSV files
 ```{r}
 # create a list of file names to read in
 
-lef_files <- list.files(here("data"), pattern = "*.csv")
+lef_files <- list.files("/courses/EDS214/coqui_crew/data", pattern = "*.csv")
 
 # loop over the files, reading in, and creating a stored object with assign
 for (i in seq_along(lef_files)) {
@@ -53,7 +54,7 @@ for (i in seq_along(lef_files)) {
 ```
 
 
-# Cleaning BQ1 : Julia
+#### Cleaning BQ1 : Julia
 ```{r}
 bq1 <- `QuebradaCuenca1-Bisley` %>% 
   clean_names() %>% 
@@ -65,7 +66,7 @@ bq1 <- `QuebradaCuenca1-Bisley` %>%
 
 
 
-# Cleaning BQ2: Scout
+#### Cleaning BQ2: Scout
 ```{r}
 #created a new df called "bq2"
 #separated the sample date column into sample dates and sample times for ease of wrangling the dates, which are of more importance 
@@ -84,7 +85,7 @@ bq2 <- `QuebradaCuenca2-Bisley` %>%
 ```
 
 
-# Cleaning BQ3: Marie
+#### Cleaning BQ3: Marie
 ```{r}
 # cleaning data for BQ3
 bq3 <- `QuebradaCuenca3-Bisley` %>% 
@@ -95,7 +96,7 @@ bq3 <- `QuebradaCuenca3-Bisley` %>%
   select(-sample_time)
 ```
 
-# Cleaning PRM: Steven
+#### Cleaning PRM: Steven
 ```{r}
 prm <- RioMameyesPuenteRoto %>% 
   
@@ -120,13 +121,13 @@ prm <- RioMameyesPuenteRoto %>%
   
   # select("sample_date", "date", "year, "no3", "k")
 ```
-# Combining Datasets: Marie
+#### Combining Datasets: Marie
 ```{r}
 all_sites <- bind_rows(prm, bq1, bq2, bq3) %>% 
   group_by(sample_id)
 ```
 
-# Visualizing All Sites: Scout
+#### Visualizing All Sites: Scout
 
 ```{r}
 all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
@@ -167,7 +168,7 @@ all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
         legend.title = element_blank())
 ```
 
-# Results / Challenges
+### Results / Challenges
 
 We focused mostly on the team component over the analysis component in completing this project. Particularly, we learned a lot about branching in team work flows. 
 
