@@ -1,0 +1,33 @@
+---
+title: "lef_project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(lubridate)
+library(patchwork)
+
+```
+
+Code below reads in and assigns multiple CSV files
+```{r}
+# create a list of file names to read in
+
+lef_files <- list.files(here("data"), pattern = "*.csv")
+
+# loop over the files, reading in, and creating a stored object with assign
+for (i in seq_along(lef_files)) {
+    assign(lef_files[i] %>%
+             str_remove(".csv"),
+           read_csv(here("data", lef_files[i]), na = c("-9999","-9999.0","-9999.00")))
+}
+```
+
+
+
+
