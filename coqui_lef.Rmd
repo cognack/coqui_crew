@@ -11,6 +11,7 @@ library(here)
 library(janitor)
 library(lubridate)
 library(patchwork)
+library(GGally)
 
 ```
 
@@ -52,7 +53,7 @@ bq1_df
 
 Scout code chunk: Cleaning BQ2
 ```{r}
-#created a new df called "qb2"
+#created a new df called "bq2"
 #separated the sample date column into sample dates and sample times for ease of wrangling the dates, which are of more importance 
 #used lubridate to change `sample_date` data to mdy format
 #added a year column using sample_date
@@ -66,7 +67,7 @@ bq2 <- `QuebradaCuenca2-Bisley` %>%
   mutate(month = month(sample_date)) %>% 
   select(-sample_time)
 
-#plot no3 from qb2
+#plot no3 from bq2
 #unit is micrograms per liter. (value ranges from 0 to 1500)
 
 bq2_no3 <- ggplot(data = bq2, aes(x = sample_date, y = no3)) +
@@ -77,7 +78,7 @@ bq2_no3 <- ggplot(data = bq2, aes(x = sample_date, y = no3)) +
 
 bq2_no3
 
-#plot k from qb2
+#plot k from bq2
 #unit it mg/l. (value ranges from 0 to 4) 
 
 bq2_k <- ggplot(data = bq2, aes(x = sample_date, y = k)) +
@@ -88,7 +89,7 @@ bq2_k <- ggplot(data = bq2, aes(x = sample_date, y = k)) +
 
 bq2_k
 
-bq2_k / qb2_no3
+bq2_k / bq2_no3
 
 ```
 
@@ -204,4 +205,6 @@ all_sites_no3
 
 all_sites_k / all_sites_no3
 ```
+
+
 
