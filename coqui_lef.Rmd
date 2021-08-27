@@ -17,7 +17,13 @@ library(patchwork)
 library(here)
 ```
 
-![Coqui Image](images/coqui_npr.jpg)
+![**Coqui** (*Eleutherodactylus coqui*) Photo Credit: NPR](images/coqui_npr.jpg)
+
+# **EDS 214 Coqui Crew**
+
+The Coqui Crew consists of Marie Rivers, Scout Leonard, Steven Cognac, and Julia Parish. 
+
+Our team name was inspired by the small but impressive coqui (*Eleutherodactylus coqui*), which is a native tree frog in Puerto Rico. 
 
 ### Questions 
 *technical:* How did hurricane Hugo impact stream chemistry at the Luquillo Experimental Forest?
@@ -171,12 +177,44 @@ all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
 
 ### Results / Challenges
 
-We focused mostly on the team component over the analysis component in completing this project. Particularly, we learned a lot about branching in team work flows. 
+We focused mostly on the team component over the analysis component in completing this project. Particularly, we learned a lot about branching in team work flows and regenerate our PATs.  
 
-While we had some conflicts as we worked in the same branch, they were small! We realized they were pretty easy to resolve and less scary retrospectively than the work of thinking about our branch structures! 
+As most of the class knows, there were significant technological limitations due to rapidly expiring PATs. Our first day on this project was consumed by navigating this hurdle and adapting to the disruption in our workflow of having to enter `gitcreds::gitcreds_set()` each time we attempted to push. Productivity was hampered as the whole group came to a standstill while we were waiting for our teammate to push and merge their edits. 
 
-In this process, we learned that creating separate markdown files may have been more efficient than multiple branches. For each branch merge to the main, we spent quite a bit of time thinking about the implications of merging. The conceptual logistics slowed down our analysis overall. It would have been complicated to work in the branches like this if we were not all in the same room! 
+While we had some conflicts as we worked in the same branch, they were small! We realized they were pretty easy to resolve and less scary retrospectively than the work of thinking about our branch structures. 
+
+In this process, we learned that creating separate markdown files may have been more efficient than multiple branches. For each branch merge to the main, we spent quite a bit of time thinking about the implications of merging. The conceptual logistics slowed down our analysis overall. It would have been complicated to work in the branches like this if we were not all in the same room. 
 
 Another lesson we learned is that it's not advisable to experiment with code in the main branch. You always want to know that your main branch will run without error. A good use of branching is to experiment with new code in a single branch that can then be merged into the main branch without conflict when you're happy with the code. We only worked in the main branch to do things like add this text!
 
-![Coqui Capture](images/parish_coqui.jpg)
+### Lessons Learned
+- Insert an image outside of code chunk
+- A better mental map of Taylor, GitHub, and personal computer & how they communicate with each other
+- Gradually incorporate & test new technologies before implementing them in a large-scale project or organization (aka beta testing)
+- How paired programming really plays out IRL 
+- Switching off the Driver is important, helpful and essential
+- Storing data on a server has advantages vs on a personal computer but the technology has to be fully understood 
+- Striking a balance between independent coding as a team versus sourcing information from other classmates
+
+
+### References
+
+Coqui Crew GitHub Repository: https://github.com/cognack/coqui_crew
+
+McDowell, W. 2021. Chemistry of stream water from the Luquillo Mountains ver 4923052. Environmental Data Initiative.
+https://doi.org/10.6073/pasta/ddb4d61aea2fb18b77540e9b0c424684 (Accessed 2021-08-26).
+
+### Acknowledgements
+
+Thank you to our professor, Julien Bruin, for providing us with an opportunity to do a group project! 
+
+Jamie Montgomery and Casey O'hara for their technical assistance.
+
+Sam Csik for assisting with color palettes.
+
+Brad Hill & Kat Le - our very own tech gurus. Thank you for providing support with Taylor, PATs, and installing important packages on our server. 
+
+and to our MEDS 2021 classmates - we appreciate your daily encouragement, advice, and laughs. 
+
+
+![**Coqui Capture** Photo Credit: Tess Herman](images/parish_coqui.jpg)
