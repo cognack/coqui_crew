@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 library(tidyverse)
 library(here)
@@ -25,14 +25,11 @@ for (i in seq_along(lef_files)) {
     assign(lef_files[i] %>%
              str_remove(".csv"),
            read_csv(here("data", lef_files[i]), na = c("-9999","-9999.0","-9999.00")))
-  
 }
-
-
 ```
 
 
-Julia code chunk - cleaning BQ1
+Cleaning BQ1 : Julia
 ```{r}
 bq1 <- `QuebradaCuenca1-Bisley` %>% 
   clean_names() %>% 
@@ -40,19 +37,13 @@ bq1 <- `QuebradaCuenca1-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date)) %>% 
   select(-sample_time)
-
-bq1_df <- ggplot(data = bq1, aes(x = sample_date, y = no3)) +
-  geom_line()
-  
-bq1_df
-
 ```
 
 
 
-Scout code chunk: Cleaning BQ2
+Cleaning BQ2: Scout
 ```{r}
-#created a new df called "qb2"
+#created a new df called "bq2"
 #separated the sample date column into sample dates and sample times for ease of wrangling the dates, which are of more importance 
 #used lubridate to change `sample_date` data to mdy format
 #added a year column using sample_date
@@ -66,34 +57,10 @@ bq2 <- `QuebradaCuenca2-Bisley` %>%
   mutate(month = month(sample_date)) %>% 
   select(-sample_time)
 
-#plot no3 from qb2
-#unit is micrograms per liter. (value ranges from 0 to 1500)
-
-bq2_no3 <- ggplot(data = bq2, aes(x = sample_date, y = no3)) +
-  geom_line() +
-  labs(x = "Years",
-       y = expression(paste(NO[3], " ", "-N", ug, 1^{-1}))) +
-  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype = 4, color = "red")
-
-bq2_no3
-
-#plot k from qb2
-#unit it mg/l. (value ranges from 0 to 4) 
-
-bq2_k <- ggplot(data = bq2, aes(x = sample_date, y = k)) +
-  geom_line() +
-  labs(x = "Years",
-       y = expression(paste(NO[3], " ", "-N", ug, 1^{-1}))) +
-  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), linetype = 4, color = "red")
-
-bq2_k
-
-bq2_k / qb2_no3
-
 ```
 
 
-Marie code chunk
+Cleaning BQ3: Marie
 ```{r}
 # cleaning data for BQ3
 bq3 <- `QuebradaCuenca3-Bisley` %>% 
@@ -102,23 +69,9 @@ bq3 <- `QuebradaCuenca3-Bisley` %>%
   mutate(year = year(sample_date)) %>% 
   mutate(month = month(sample_date)) %>% 
   select(-sample_time)
-
-bq3_no3_plot <- ggplot(data = bq3, aes(x = sample_date, y = no3)) +
-  geom_line(linetype = "dashed") +
-  labs(x = "year", y = "Nitrate (ug/L)")
-  
-bq3_k_plot <- ggplot(data = bq3, aes(x = sample_date, y = k)) +
-  geom_line(linetype = "dashed") +
-  geom_vline(xintercept = as.numeric(as.Date("1990-01-01")), color = "blue") +
-  labs(x = "year", y = "Potassium (mg/L)")
-bq3_k_plot
-
-(bq3_k_plot / bq3_no3_plot) & theme_classic()
-
-# note, note
 ```
 
-Steven code chunk PRM
+Cleaning PRM: Steven
 ```{r}
 prm <- RioMameyesPuenteRoto %>% 
   
@@ -142,40 +95,15 @@ prm <- RioMameyesPuenteRoto %>%
   # K in ug N/L
   
   # select("sample_date", "date", "year, "no3", "k")
-  
-
-
-
-
 prm
-
-
-
-prm_no3 <- ggplot(data = prm, aes(x = sample_date, y = no3)) +
-  geom_line() +
-  labs(x = "Years",
-       y = expression(paste(NO[3]," ", "-N ", ug, l^{-1}))) +
-  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", linetype=4)
-
-
-prm_k<- ggplot(data = prm, aes(x = sample_date, y = k)) +
-  geom_line() +
-  labs(x = NULL,
-       y = expression(paste("k mg ", l^{-1}))) +
-  geom_vline(xintercept = as.numeric(as.Date("1989-09-21")), color = "blue", linetype=4)
-
-
-
-(prm_k / prm_no3) & theme_minimal()
-
 ```
-Combining Datasets (Marie)
+Combining Datasets: Marie
 ```{r}
 all_sites <- bind_rows(prm, bq1, bq2, bq3) %>% 
   group_by(sample_id)
 ```
 
-Visualizing All Sites (Scout)
+Visualizing All Sites: Scout
 
 ```{r}
 all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
