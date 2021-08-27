@@ -199,9 +199,9 @@ Another lesson we learned is that it's not advisable to experiment with code in 
 - Storing data on a server has advantages vs on a personal computer but the technology has to be fully understood 
 - Striking a balance between independent coding as a team versus sourcing information from other classmates
 
-For more information: 
+### GitHub Repository 
 
-Coqui Crew GitHub Repository: https://github.com/cognack/coqui_crew
+Coqui Crew: https://github.com/cognack/coqui_crew
 
 
 ### References
