@@ -7,12 +7,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 library(tidyverse)
-library(here)
 library(janitor)
 library(lubridate)
 library(patchwork)
 
 ```
+
+![Coqui Image](images/coqui_npr.jpg)
 
 ### Questions 
 *technical:* How did hurricane Hugo impact stream chemistry at the Luquillo Experimental Forest?
@@ -38,6 +39,7 @@ library(patchwork)
     - Pair-coded with designated drivers and navigators for combining dataframes and creating visualization in branches 
     - Navigators looked up visualization techniques and components and discussed dicisions with the rest of group 
 
+![Coqui Crew Workflow Branches](images/coqui_crew_branches.png)
 
 Code below reads in and assigns multiple CSV files
 ```{r}
@@ -111,15 +113,6 @@ prm <- RioMameyesPuenteRoto %>%
   mutate(month = month(sample_date)) %>% 
   select(-sample_time)
   
-  # group by
-  #group_by(sample_date, year, month) %>% 
-  #summarize(k, no3)
-  
-  # select columns three columns
-  # no3 in ug N/L
-  # K in ug N/L
-  
-  # select("sample_date", "date", "year, "no3", "k")
 ```
 #### Combining Datasets: Marie
 ```{r}
