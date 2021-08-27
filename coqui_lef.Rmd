@@ -1,5 +1,5 @@
 ---
-title: "lef_project"
+title: "Coqui Crew: Analysis of Hurricane Impact on Stream Chemistry in LEF"
 output: html_document
 ---
 
@@ -13,6 +13,30 @@ library(lubridate)
 library(patchwork)
 
 ```
+
+# Questions 
+*technical:* How did hurricane Hugo impact stream chemistry at the Luquillo Experimental Forest?
+
+*team work flow:* How can we collaborate to clean data, combine data, and produce a visualization? 
+
+# Set Up
+
+- Steven made a Github repo with an R project containing our data
+- Marie, Julia, and Scout were assigned as collaborators on the repo
+- All of us worked on the project through our user accounts in the Taylor server
+- The data was stored in the Github repo and was uploaded in one person's project. 
+  
+# Team Organization 
+
+- First worked in assigned code chunks in the Rmd in one main branch. 
+- After a few conflicts, we tried working in separate branches. We did:
+  - Data cleaning on out own computers while verbalizing discussing our process
+  - Practice visualizations of individual sites on our own computers/branches to plan for all-sites graph
+    - We merged these branches to the main branch 
+  - We created a new branch from main for the next processes
+    - Pair-coded with designated drivers and navigators for combining dataframes and creating visualization in branches 
+    - Navigators looked up visualization techniques and components and discussed dicisions with the rest of group 
+
 
 Code below reads in and assigns multiple CSV files
 ```{r}
@@ -29,7 +53,7 @@ for (i in seq_along(lef_files)) {
 ```
 
 
-Cleaning BQ1 : Julia
+# Cleaning BQ1 : Julia
 ```{r}
 bq1 <- `QuebradaCuenca1-Bisley` %>% 
   clean_names() %>% 
@@ -41,7 +65,7 @@ bq1 <- `QuebradaCuenca1-Bisley` %>%
 
 
 
-Cleaning BQ2: Scout
+# Cleaning BQ2: Scout
 ```{r}
 #created a new df called "bq2"
 #separated the sample date column into sample dates and sample times for ease of wrangling the dates, which are of more importance 
@@ -60,7 +84,7 @@ bq2 <- `QuebradaCuenca2-Bisley` %>%
 ```
 
 
-Cleaning BQ3: Marie
+# Cleaning BQ3: Marie
 ```{r}
 # cleaning data for BQ3
 bq3 <- `QuebradaCuenca3-Bisley` %>% 
@@ -71,7 +95,7 @@ bq3 <- `QuebradaCuenca3-Bisley` %>%
   select(-sample_time)
 ```
 
-Cleaning PRM: Steven
+# Cleaning PRM: Steven
 ```{r}
 prm <- RioMameyesPuenteRoto %>% 
   
@@ -95,15 +119,14 @@ prm <- RioMameyesPuenteRoto %>%
   # K in ug N/L
   
   # select("sample_date", "date", "year, "no3", "k")
-prm
 ```
-Combining Datasets: Marie
+# Combining Datasets: Marie
 ```{r}
 all_sites <- bind_rows(prm, bq1, bq2, bq3) %>% 
   group_by(sample_id)
 ```
 
-Visualizing All Sites: Scout
+# Visualizing All Sites: Scout
 
 ```{r}
 all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
@@ -117,7 +140,7 @@ all_sites_k <- ggplot(data = all_sites, aes(x = sample_date, y = k)) +
        y = expression(paste("k mg ", l^{-1}))) +
   scale_x_date(position = "top")
 
-all_sites_k 
+#all_sites_k (used to view separate graphs before combining)
 
 all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
   geom_line(aes(linetype = sample_id),
@@ -130,7 +153,7 @@ all_sites_no3 <- ggplot(data = all_sites, aes(x = sample_date, y = no3)) +
   theme(axis.text.x = element_blank())
   
 
-all_sites_no3
+#all_sites_no3 (used to view separate graphs before combining)
 
 ```
 
@@ -141,7 +164,15 @@ all_sites_no3
   theme(legend.position = c(0.9, 0.6),
         legend.background = element_blank(),
         legend.key.size = unit(0.1, 'cm'), 
-        legend.title = element_blank(),
-        )
+        legend.title = element_blank())
 ```
 
+# Results / Challenges
+
+We focused mostly on the team component over the analysis component in completing this project. Particularly, we learned a lot about branching in team work flows. 
+
+While we had some conflicts as we worked in the same branch, they were small! We realized they were pretty easy to resolve and less scary retrospectively than the work of thinking about our branch structures! 
+
+In this process, we learned that creating separate markdown files may have been more efficient than multiple branches. For each branch merge to the main, we spent quite a bit of time thinking about the implications of merging. The conceptual logistics slowed downs our analysis overall. It would have been complicated to work in the branches like this if we were not all in the same room! 
+
+Another lesson we learned is that it's not advisable to experiment with code in the main branch. You always want to know that your main branch will run without error. A good use of branching is to experiment with new code in a single branch that can then be merged into the main branch without conflict when you're happy with the code. We only worked in the main branch to do things like add this text!
