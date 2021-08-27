@@ -199,10 +199,12 @@ Another lesson we learned is that it's not advisable to experiment with code in 
 - Storing data on a server has advantages vs on a personal computer but the technology has to be fully understood 
 - Striking a balance between independent coding as a team versus sourcing information from other classmates
 
-
-### References
+For more information: 
 
 Coqui Crew GitHub Repository: https://github.com/cognack/coqui_crew
+
+
+### References
 
 McDowell, W. 2021. Chemistry of stream water from the Luquillo Mountains ver 4923052. Environmental Data Initiative.
 https://doi.org/10.6073/pasta/ddb4d61aea2fb18b77540e9b0c424684 (Accessed 2021-08-26).
