@@ -171,6 +171,8 @@ We focused mostly on the team component over the analysis component in completin
 
 While we had some conflicts as we worked in the same branch, they were small! We realized they were pretty easy to resolve and less scary retrospectively than the work of thinking about our branch structures! 
 
-In this process, we learned that creating separate markdown files may have been more efficient than multiple branches. For each branch merge to the main, we spent quite a bit of time thinking about the implications of merging. The conceptual logistics slowed downs our analysis overall. It would have been complicated to work in the branches like this if we were not all in the same room! 
+In this process, we learned that creating separate markdown files may have been more efficient than multiple branches. For each branch merge to the main, we spent quite a bit of time thinking about the implications of merging. The conceptual logistics slowed down our analysis overall. It would have been complicated to work in the branches like this if we were not all in the same room! 
 
 Another lesson we learned is that it's not advisable to experiment with code in the main branch. You always want to know that your main branch will run without error. A good use of branching is to experiment with new code in a single branch that can then be merged into the main branch without conflict when you're happy with the code. We only worked in the main branch to do things like add this text!
+
+![Coqui Capture](images/parish_coqui.jpg)
