@@ -18,7 +18,7 @@ Code below reads in and assigns multiple CSV files
 ```{r}
 # create a list of file names to read in
 
-lef_files <- list.files(here("data"), pattern = "*.csv")
+lef_files <- list.files("/courses/EDS214/coqui_crew/data", pattern = "*.csv")
 
 # loop over the files, reading in, and creating a stored object with assign
 for (i in seq_along(lef_files)) {
