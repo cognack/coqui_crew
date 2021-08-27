@@ -1,5 +1,8 @@
 ---
 title: "Coqui Crew: Analysis of Hurricane Impact on Stream Chemistry in LEF"
+knit: (function(inputFile, encoding) {
+    rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs")
+  })
 output: 
   html_document: 
     theme: flatly
@@ -204,17 +207,25 @@ Coqui Crew GitHub Repository: https://github.com/cognack/coqui_crew
 McDowell, W. 2021. Chemistry of stream water from the Luquillo Mountains ver 4923052. Environmental Data Initiative.
 https://doi.org/10.6073/pasta/ddb4d61aea2fb18b77540e9b0c424684 (Accessed 2021-08-26).
 
-### Acknowledgements
+### Acknowledgements  
 
-Thank you to our professor, Julien Bruin, for providing us with an opportunity to do a group project! 
+Thank you to our professor, Julien Brun, for providing us with an opportunity to do a group project! 
 
 Jamie Montgomery and Casey O'hara for their technical assistance.
 
-Sam Csik for assisting with color palettes.
+Sam Csik for assisting with color palettes and .HTML creation.
 
 Brad Hill & Kat Le - our very own tech gurus. Thank you for providing support with Taylor, PATs, and installing important packages on our server. 
 
 and to our MEDS 2021 classmates - we appreciate your daily encouragement, advice, and laughs. 
 
+<center>
+
+![](images/bren_meds_hex.png){width=20%}
+
+<center>
+
 
 ![**Coqui Capture** Photo Credit: Tess Herman](images/parish_coqui.jpg)
+
+
